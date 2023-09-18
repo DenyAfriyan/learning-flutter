@@ -1,6 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -10,46 +12,25 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<Widget> widgets = [];
-  int counter = 1;
+  Random random = Random();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text("List and List View"),
-        ),
-        body: ListView(
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        widgets.add(Text(
-                          "Data ke- $counter",
-                          style: TextStyle(fontSize: 50),
-                        ));
-                        counter++;
-                      });
-                    },
-                    child: Text("tambah data")),
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        widgets.removeLast();
-                        counter--;
-                      });
-                    },
-                    child: Text("Hapus data")),
-              ],
+        appBar: AppBar(title: const Text("Latihan Animated Container")),
+        body: Center(
+          child: GestureDetector(
+            onTap: () {
+              setState(() {});
+            },
+            child: AnimatedContainer(
+              duration: const Duration(seconds: 1),
+              width: 50.0 + random.nextInt(101),
+              height: 50.0 + random.nextInt(101),
+              color: Color.fromARGB(255, random.nextInt(257),
+                  random.nextInt(257), random.nextInt(257)),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: widgets,
-            )
-          ],
+          ),
         ),
       ),
     );
